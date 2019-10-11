@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
+from .forms import RegisterForm
 
 
 # Create your views here.
@@ -15,12 +14,12 @@ def index(request):
 
 def registration(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
         return redirect('/')
     else:
-        form = UserCreationForm()
+        form = RegisterForm()
     param = {
         "form": form,
     }

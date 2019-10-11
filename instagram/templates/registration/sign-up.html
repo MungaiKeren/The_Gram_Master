@@ -1,4 +1,5 @@
 {% extends 'registration/reg_base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
 <div class="container">
     <div class="row">
@@ -7,7 +8,7 @@
             <h4>Create an account</h4>
             <form action="" method="post" class="form-group">
                 {% csrf_token %}
-                {{form}}
+                {{form|crispy}}
                 <button class="btn btn-success" type="submit">Sign Up</button>
             </form>
         </div>
