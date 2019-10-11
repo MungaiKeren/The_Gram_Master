@@ -8,21 +8,42 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href=""></a>
+        <a class="nav-link" href="">im here</a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" href=""></a>
+          <a class="nav-link" href="">here</a>
         </li>
     </ul>
   </div>
   <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
     <ul class="navbar-nav ml-auto">
-        <li class="nav-item" style="color: white">
-
+        <li class="nav-item mt-2" style="color: black">
+            there
           </li>
       <li class="nav-item">
-        <a class="nav-link" href=""></a>
+        <a class="nav-link" href="">and here</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="">and here</a>
+      </li>
+    </ul>
+  </div>
+  {%if user.is_authenticated%}
+  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+    <ul class="navbar-nav ml-auto">
+      <a href="/accounts/password/change">
+        <li class="nav-item mt-2" style="color: black">
+            Change password
+          </li>
+      </a>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+      {% endif %}
     </ul>
   </div>
 </nav>
