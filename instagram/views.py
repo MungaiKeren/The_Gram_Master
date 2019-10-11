@@ -14,7 +14,12 @@ def index(request):
 
 
 def registration(request):
-    form = UserCreationForm()
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = UserCreationForm()
     param = {
         "form": form,
     }

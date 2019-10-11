@@ -6,6 +6,7 @@
         <div class="col-md-4">
             <h4>Create an account</h4>
             <form action="" method="post" class="form-group">
+                {% csrf_token %}
                 {{form}}
                 <button class="btn btn-success" type="submit">Sign Up</button>
             </form>
