@@ -2,14 +2,17 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import RegisterForm
 from django.contrib.auth.decorators import login_required
+from .models import *
 
 
 # Create your views here.
 @login_required(login_url='/login')
 def index(request):
     title = 'instagram-clone'
+    posts = Image.get_images()
     param = {
-        "title": title
+        "title": title,
+        "posts": posts
     }
     return render(request, 'index.html', param)
 

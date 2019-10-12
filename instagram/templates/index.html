@@ -1,4 +1,15 @@
 {% extends 'base.html'%}
 {% block content %}
-<h1>Hello there I'm developing instagram ;-)</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-">
+        {% for image in posts %}
+        <img src="{{image.image.url}}" class="mt-5" width="100%" alt="{{image.img_name}}">
+        {% empty %}
+        <p>No images have been posted yet</p>
+        {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}
