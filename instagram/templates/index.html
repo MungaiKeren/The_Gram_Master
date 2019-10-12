@@ -5,7 +5,13 @@
         <div class="col-md-1"></div>
         <div class="col-md-">
         {% for image in posts %}
-        <img src="{{image.image.url}}" class="mt-5" width="100%" alt="{{image.img_name}}">
+        <img src="{{image.image.url}}" class="mt-4" width="100%" alt="{{image.img_name}}">
+        <p class="text-muted">{{image.img_caption}}  {{image.img_likes}} likes
+        <br>
+            ~{{image.img_name}}~
+            <br> Posted on:
+            ~{{image.post_date}}~
+        </p>
         {% empty %}
         <p>No images have been posted yet</p>
         {% endfor %}
