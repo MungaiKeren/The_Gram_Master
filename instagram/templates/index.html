@@ -9,8 +9,7 @@
         <p class="text-muted">{{image.img_caption}}  {{image.img_likes}} likes
         <br>
             ~{{image.img_name}}~
-            <br> Posted on:
-            ~{{image.post_date}}~
+            <br>~Posted {{image.post_date|timesince}} ago~
         </p>
         {% empty %}
         <p>No images have been posted yet</p>
