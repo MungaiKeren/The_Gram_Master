@@ -44,8 +44,9 @@ class Image(models.Model):
     def update_image(self):
         self.update_image()
 
-    def update_caption(self):
-        self.update_caption()
+    def update_caption(self, caption):
+        self.img_caption = caption
+        self.save()
 
     @classmethod
     def get_images(cls):
