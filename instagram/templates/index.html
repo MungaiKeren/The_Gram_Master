@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-">
+        <div class="col-md-6">
         {% for image in posts %}
         <img src="{{image.image.url}}" class="mt-4" width="100%" alt="{{image.img_name}}">
         <p class="text-muted">{{image.img_caption}}  {{image.img_likes}} likes
@@ -15,6 +15,15 @@
         {% empty %}
         <p>No images have been posted yet</p>
         {% endfor %}
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-4 d-inline-block">
+            <a href="{% url 'profile'%}">
+                <p class="mt-5">@{{user.username}}</p>
+                <img  src="{{user.profile.profile_photo.url}}" height="100px" width="100px" class="rounded-circle" alt="profile photo">
+            </a>
+<!--            <p class="mt-3">Followers:</p>-->
+<!--            <p>Following:</p>-->
         </div>
     </div>
 </div>
