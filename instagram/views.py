@@ -38,7 +38,7 @@ def profile(request):
             profile = form.save(commit=False)
             profile.user = current_user
             profile.save()
-        return redirect('profile')
+        return redirect('/profile')
     else:
         form = ProfileForm()
         params = {
@@ -58,7 +58,7 @@ def edit_profile(request):
             profile.profile_photo.delete()
             profile.profile_photo = form.cleaned_data["profile_photo"]
             profile.save()
-        return redirect('profile')
+        return redirect('/edit-profile')
     else:
         form = ProfileForm()
     return render(request, 'edit_profile.html', {"form": form})
