@@ -2,4 +2,20 @@
 {% block content %}
 {{ block.super }}
 <h1>This will show profile</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img class="rounded-circle" src="https://instagram.fmba2-1.fna.fbcdn.net/vp/425f3474770c9b03adca00f9f2f9b9c1/5E249E2B/t51.2885-19/s150x150/72920580_718985515236181_9077236526227652608_n.jpg?_nc_ht=instagram.fmba2-1.fna.fbcdn.net" alt="profile image" id="profile">
+        </div>
+        <div class="col-md-4 col-sm-6 col-lg-6">
+            <button class="btn btn-primary">Posted pics</button>
+            <button class="btn btn-primary">Followers</button>
+            <button class="btn bg-danger">Following</button>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <h1>Images posted on my time line are here</h1>
+    </div>
+</div>
 {% endblock %}
