@@ -7,6 +7,17 @@ from django.contrib.auth.models import User
 
 
 # Create your views here.
+def registration(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('/login')
+    else:
+        form = RegisterForm()
+    return render(request, 'registration/sign-up.html', {"form": form})
+
+
 @login_required(login_url='/login')
 def index(request):
     title = 'instagram-clone'
@@ -36,15 +47,4 @@ def profile(request):
     return render(request, 'profile.html', params)
 
 
-def registration(request):
-    if request.method == 'POST':
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-        return redirect('/login')
-    else:
-        form = RegisterForm()
-    param = {
-        "form": form,
-    }
-    return render(request, 'registration/sign-up.html', param)
+
