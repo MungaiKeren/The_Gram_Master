@@ -3,7 +3,6 @@
 {{ block.super }}
 <div class="container">
     <div class="row">
-        </div>
         <div class="col-md-6">
         {% for image in posts %}
         <img src="{{image.image.url}}" id="myImg" class="mt-4" width="100%" alt="{{image.img_name}}">
@@ -37,7 +36,7 @@
         <div class="col-md-"></div>
         <div class="col-md-4 d-inline-block">
             <a href="{% url 'profile'%}">
-                <p class="mt-5">@{{user.username}} you went</p>
+                <p class="mt-5">@{{user.username}}</p>
             </a>
               <img  src="{{ user.profile.prof_image.url}}" height="100px" width="100px" class="rounded-circle" alt="profile photo">
         </div>
