@@ -24,7 +24,6 @@ def index(request):
     title = 'instagram-clone'
     posts = Image.get_images()
     comments = Comment.get_all_comments()
-
     current_user = request.user
     if request.method == 'POST':
         form = CommentForm(request.POST)
@@ -46,6 +45,21 @@ def index(request):
         "comments": comments,
     }
     return render(request, 'index.html', param)
+
+
+@login_required(login_url='/login')
+def post_pic(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = PostPicForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.author = current_user
+            image.save()
+        return redirect('/')
+    else:
+        form = PostPicForm(auto_id=False)
+    return render(request, 'new_pic.html', {"form": form})
 
 
 @login_required(login_url='/login')
