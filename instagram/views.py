@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import RegisterForm, ProfileForm
+from .forms import *
 from django.contrib.auth.decorators import login_required
 from .models import *
 from django.contrib.auth.models import User
@@ -49,16 +49,12 @@ def profile(request):
 
 @login_required(login_url='/login')
 def edit_profile(request):
-    current_user = request.user
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES)
+        form = EditProfileForm(request.POST, instance=request.user)
         if form.is_valid():
-            Profile.objects.filter(id=current_user.profile.id).update(bio=form.cleaned_data["bio"])
-            profile_data = Profile.objects.filter(id=current_user.profile.id).first()
-            Profile.profile_photo.delete_profile()
-            Profile.profile_photo = form.cleaned_data["profile_photo"]
-            Profile.save()
-        return redirect('/edit-profile')
+            form.save()
+            return redirect('/')
     else:
-        form = ProfileForm()
+        form = EditProfileForm(instance=request.user)
     return render(request, 'edit_profile.html', {"form": form})
+
