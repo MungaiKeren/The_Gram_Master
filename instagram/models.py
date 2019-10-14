@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from PIL import Image
 
 
 class Profile(models.Model):
@@ -9,9 +10,6 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
-
-    def save_profile(self):
-        self.save()
 
     def delete_profile(self):
         self.delete()
@@ -64,3 +62,8 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ['-date']
+
+    @classmethod
+    def get_all_comments(cls):
+        comments = Comment.objects.all()
+        return comments
