@@ -48,21 +48,21 @@ def profile(request):
     return render(request, 'profile.html', params)
 
 
-@login_required(login_url='/login')
-def edit_profile(request):
-    if request.method == 'POST':
-        u_form = EditProfileForm(request.POST, instance=request.user)
-        p_form = ProfileUpdateForm(request.POST,
-                                   request.FILES,
-                                   instance=request.user.profile)
-        if u_form.is_valid() and p_form.is_valid():
-            u_form.save()
-            p_form.save()
-            messages.success(request, f'You have successfully updated your profile!')
-            return redirect('/profile')
-    else:
-        u_form = EditProfileForm(instance=request.user)
-        p_form = ProfileUpdateForm(request.POST,
-                                   request.FILES,
-                                   instance=request.user.profile)
-    return render(request, 'edit_profile.html', {"u_form": u_form, "p_form": p_form})
+# @login_required(login_url='/login')
+# def edit_profile(request):
+#     if request.method == 'POST':
+#         u_form = EditProfileForm(request.POST, instance=request.user)
+#         p_form = ProfileUpdateForm(request.POST,
+#                                    request.FILES,
+#                                    instance=request.user.profile)
+#         if u_form.is_valid() and p_form.is_valid():
+#             u_form.save()
+#             p_form.save()
+#             messages.success(request, f'You have successfully updated your profile!')
+#             return redirect('/profile')
+#     else:
+#         u_form = EditProfileForm(instance=request.user)
+#         p_form = ProfileUpdateForm(request.POST,
+#                                    request.FILES,
+#                                    instance=request.user.profile)
+#     return render(request, 'edit_profile.html', {"u_form": u_form, "p_form": p_form})

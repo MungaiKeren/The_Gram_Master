@@ -5,13 +5,13 @@
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-6">
-            {%if user.profile.profile_photo.url %}
-            <img src="{{user.profile.profile_photo.url}}" height="250px" width="250px" class="rounded-circle" alt="profile photo">
+            {%if user.profile.prof_image.url %}
+            <img src="{{user.profile.prof_image.url}}" height="250px" width="250px" class="rounded-circle" alt="profile photo">
             {% else %}
-            <form action="" method="post" class="form-group">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-success" value="">Submit</button>
-            </form>
+            <p>You have no profile yet</p>
+            <a href="{% url 'edit_profile'%}">
+                <button class="btn">Edit Profile</button>
+            </a>
             {% endif %}
         </div>
         <div class="col-md-4 col-sm-6 col-lg-6">
@@ -22,6 +22,7 @@
             <div class="row">
                 <div class="col-md-2">
                   <h6 class="mt-4">@{{user.username}}</h6>
+                  <h6 class="mt-4">@{{user.email}}</h6>
                 </div>
                 <div class="col-md-2">
                     <a href="{% url 'edit_profile'%}">
