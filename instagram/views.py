@@ -35,8 +35,8 @@ def profile(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
-            profile = form.save(commit=False)
-            profile.user = current_user
+            profile_data = form.save(commit=False)
+            profile_data.user = current_user
             profile.save()
         return redirect('/profile')
     else:
@@ -54,10 +54,10 @@ def edit_profile(request):
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
             Profile.objects.filter(id=current_user.profile.id).update(bio=form.cleaned_data["bio"])
-            profile = Profile.objects.filter(id=current_user.profile.id).first()
-            profile.profile_photo.delete()
-            profile.profile_photo = form.cleaned_data["profile_photo"]
-            profile.save()
+            profile_data = Profile.objects.filter(id=current_user.profile.id).first()
+            Profile.profile_photo.delete_profile()
+            Profile.profile_photo = form.cleaned_data["profile_photo"]
+            Profile.save()
         return redirect('/edit-profile')
     else:
         form = ProfileForm()
