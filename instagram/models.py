@@ -5,8 +5,11 @@ from PIL import Image
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    prof_image = models.ImageField(upload_to='profile_photo/', blank=True)
+    prof_image = models.ImageField(upload_to='profile_photo/', blank=True, default='profile_photo/sea_side.jpeg')
     bio = models.CharField(max_length=50, blank=True)
+
+    def save_profile(self):
+        self.save()
 
     def __str__(self):
         return f'{self.user.username} Profile'
@@ -25,15 +28,28 @@ class Image(models.Model):
     img_likes = models.IntegerField(default=0)
     post_date = models.DateTimeField(auto_now_add=True)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, default='1')
+
+    def save_image(self):
+        self.save()
 
     def __str__(self):
         return f'{self.profile.user.username}'
 
+    @classmethod
+    def get_image(request, id):
+        try:
+            image = Image.objects.get(pk=id)
+
+        except ObjectDoesNotExist:
+            raise Http404()
+
+        return image
+
     class Meta:
         ordering = ['-post_date']
 
-    def save_image(self):
-        self.save()
+
 
     def delete_image(self):
         self.delete()
@@ -53,9 +69,10 @@ class Image(models.Model):
 
 class Comment(models.Model):
     total_comments = models.IntegerField(default=0)
-    username = models.CharField(blank=True, max_length=50)
     comment = models.CharField(max_length=200)
     date = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, default='1')
+    image = models.ForeignKey(Image, on_delete=models.CASCADE, default='pic_folder/eat_us.jpg')
 
     def __str__(self):
         return f'{self.username}'

@@ -23,10 +23,27 @@ def registration(request):
 def index(request):
     title = 'instagram-clone'
     posts = Image.get_images()
-    comment = Comment.get_all_comments()
+    comments = Comment.get_all_comments()
+
+    current_user = request.user
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        img_id = request.POST['image_id']
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = current_user
+            image = Image.get_image(img_id)
+            comment.image = image
+            comment.save()
+        return redirect(f'/#{img_id}', )
+    else:
+        form = CommentForm(auto_id=False)
+
     param = {
         "title": title,
-        "posts": posts
+        "posts": posts,
+        "form": form,
+        "comments": comments,
     }
     return render(request, 'index.html', param)
 
@@ -34,6 +51,7 @@ def index(request):
 @login_required(login_url='/login')
 def profile(request):
     current_user = request.user
+
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
