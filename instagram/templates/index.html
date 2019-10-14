@@ -7,6 +7,10 @@
         <div class="col-md-6">
         {% for image in posts %}
         <img src="{{image.image.url}}" class="mt-4" width="100%" alt="{{image.img_name}}">
+        <form action="">
+            <input type="text" class="form-control" placeholder="add comment">
+        </form>
+        <hr>
         <p class="text-muted">{{image.img_caption}}  {{image.img_likes}} likes
         <br>
             ~{{image.img_name}}~

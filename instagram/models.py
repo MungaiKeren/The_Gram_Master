@@ -52,3 +52,13 @@ class Image(models.Model):
     def get_images(cls):
         images = cls.objects.all()
         return images
+
+
+class Comment(models.Model):
+    total_comments = models.IntegerField(default=0)
+    username = models.CharField(blank=True, max_length=50)
+    comment = models.CharField(max_length=200)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.username}'
