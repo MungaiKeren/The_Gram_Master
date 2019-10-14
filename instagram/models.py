@@ -27,7 +27,7 @@ class Image(models.Model):
     img_caption = models.CharField(max_length=40, blank=True)
     img_likes = models.IntegerField(default=0)
     post_date = models.DateTimeField(auto_now_add=True)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, default='1')
     author = models.ForeignKey(User, on_delete=models.CASCADE, default='1')
 
     def save_image(self):
