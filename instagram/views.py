@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import *
@@ -50,11 +51,18 @@ def profile(request):
 @login_required(login_url='/login')
 def edit_profile(request):
     if request.method == 'POST':
-        form = EditProfileForm(request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
+        u_form = EditProfileForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST,
+                                   request.FILES,
+                                   instance=request.user.profile)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'You have successfully updated your profile!')
+            return redirect('/profile')
     else:
-        form = EditProfileForm(instance=request.user)
-    return render(request, 'edit_profile.html', {"form": form})
-
+        u_form = EditProfileForm(instance=request.user)
+        p_form = ProfileUpdateForm(request.POST,
+                                   request.FILES,
+                                   instance=request.user.profile)
+    return render(request, 'edit_profile.html', {"u_form": u_form, "p_form": p_form})

@@ -10,7 +10,6 @@
             {% else %}
             <form action="" method="post" class="form-group">
                 {% csrf_token %}
-                {{form|crispy}}
                 <button type="submit" class="btn btn-success" value="">Submit</button>
             </form>
             {% endif %}
