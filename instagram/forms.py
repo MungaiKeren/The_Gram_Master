@@ -19,7 +19,15 @@ class ProfileForm(forms.ModelForm):
         exclude = ['user']
 
 
-class EditProfileForm(UserChangeForm):
+class EditProfileForm(forms.ModelForm):
+    email = forms.EmailField()
+
     class Meta:
         model = User
-        fields = ['username', 'email', "password"]
+        fields = ['username', 'email']
+
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['profile_photo']
