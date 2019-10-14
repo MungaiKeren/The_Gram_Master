@@ -7,7 +7,7 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url('register/', views.registration, name='registration'),
     url('profile/', views.profile, name='profile'),
-    url('edit/', views.edit_profile, name='edit_profile'),
+    # url('edit/', views.edit_profile, name='edit_profile'),
     url('post/', views.post_pic, name='post_pic')
 ]
 if settings.DEBUG:

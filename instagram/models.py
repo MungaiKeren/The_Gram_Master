@@ -40,16 +40,12 @@ class Image(models.Model):
     def get_image(request, id):
         try:
             image = Image.objects.get(pk=id)
-
         except ObjectDoesNotExist:
             raise Http404()
-
         return image
 
     class Meta:
         ordering = ['-post_date']
-
-
 
     def delete_image(self):
         self.delete()

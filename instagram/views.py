@@ -64,25 +64,6 @@ def post_pic(request):
 
 @login_required(login_url='/login')
 def profile(request):
-    current_user = request.user
-
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES)
-        if form.is_valid():
-            profile_data = form.save(commit=False)
-            profile_data.user = current_user
-            profile.save()
-        return redirect('/profile')
-    else:
-        form = ProfileForm()
-        params = {
-            "form": form
-        }
-    return render(request, 'profile.html', params)
-
-
-@login_required(login_url='/login')
-def edit_profile(request):
     if request.method == 'POST':
         u_form = EditProfileForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST,
@@ -98,4 +79,4 @@ def edit_profile(request):
         p_form = ProfileUpdateForm(request.POST,
                                    request.FILES,
                                    instance=request.user.profile)
-    return render(request, 'edit_profile.html', {"u_form": u_form, "p_form": p_form})
+    return render(request, 'profile.html', {"u_form": u_form, "p_form": p_form})

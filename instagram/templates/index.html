@@ -1,4 +1,5 @@
 {% extends 'base.html'%}
+{% load crispy_forms_tags %}
 {% block content %}
 {{ block.super }}
 <div class="container">
@@ -12,21 +13,17 @@
           <img class="modal-content" id="img01">
           <div id="caption"></div>
         </div>
-        <form action="{%url 'index' %}" method="post" class="mt-2 ">
+        <form action="{%url 'index' %}" class="form-group" method="post" class="mt-2 ">
             {% csrf_token %}
-            {{ form }}
+            {{ form|crispy }}
             <input type="hidden" value="{{image.pk}}" name="image_id">
             <button class="btn btn-sm btn-info"> post </button>
         </form>
         <hr>
-        <p class="text-muted">{{image.img_caption}}  {{image.img_likes}} likes
-        <br>
-            ~{{image.img_name}}~
-            <br>~Posted {{image.post_date|timesince}} ago~
-        </p>
+            <strong>Comments:</strong><br>
             {% for comment in comments%}
             {% if image.pk == comment.image.pk %}
-            **** <p>{{comment.comment}}</p>
+            <p>{{comment.comment}}</p>
             {% endif %}
             {% endfor %}
         {% empty %}

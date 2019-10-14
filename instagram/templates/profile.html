@@ -4,26 +4,36 @@
 {{ block.super }}
 <div class="container mt-4">
     <div class="row">
-        <div class="col-md-6">
-            <img src="{{ user.profile.prof_image.url}}" height="250px" width="250px" class="rounded-circle" alt="profile photo">
-            <a href="{% url 'edit_profile'%}">
-                <button class="btn">Edit Profile</button>
-            </a>
+        <div class="col-md-3">
+            <h4>@{{user.username}}<br>
+            Bio: <br>
+                {{user.profile.bio}}
+            </h4>
         </div>
-        <div class="col-md-4 col-sm-6 col-lg-6">
-            <button class="btn btn-primary">Posted pics</button>
-            <button class="btn btn-primary">Followers</button>
-            <button class="btn bg-danger">Following</button>
-            <br>
-            <div class="row">
+        <div class="col-md-4">
+            <img src="{{ user.profile.prof_image.url}}" height="200px" width="200px" class="rounded-circle" alt="profile photo">
+        </div>
+        <div class="col-md-4">
+            <form action="" method="post" enctype="multipart/form-data" class="form-control">
+                {% csrf_token %}
+                {{u_form|crispy}}
+                {{p_form|crispy}}
+                <button type="submit" class="btn btn-sm btn-info">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+            <p>Posted pics:{{user_images|length}}   Followers:   Following:   </p>
                 <div class="col-md-2">
-                  <h6 class="mt-4">@{{user.username}}</h6>
-                  <h6 class="mt-4">@{{user.email}}</h6>
+                  <h5 class="mt-4">@{{user.username}}</h5>
                 </div>
                 <div class="col-md-2">
-                    <a href="{% url 'edit_profile'%}">
-                        <button class="btn mt-3">Edit Profile</button>
-                    </a>
+                   <form action="" enctype="multipart/form-data">
+                       {% csrf_token %}
+                       {{u_form|crispy}}
+                       {{p_form|crispy}}
+                   </form>
                 </div>
                 <div class="col-md-2"></div>
             </div>
@@ -36,4 +46,3 @@
         <h1>Images posted on my time line are here</h1>
     </div>
 </div>
-{% endblock %}
