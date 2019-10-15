@@ -9,40 +9,23 @@
             Bio: <br>
                 {{user.profile.bio}}
             </h4>
-        </div>
-        <div class="col-md-4">
-            <img src="{{ user.profile.prof_image.url}}" height="200px" width="200px" class="rounded-circle" alt="profile photo">
-        </div>
-        <div class="col-md-4">
+            <button type="button" id="edit" class="btn btn-sm btn-outline-info" data-toggle="modal" data-target=".bd-example-modal-sm">
+                Edit Profile
+            </button>
+            <div style="display: none;" id="update">
             <form action="" method="post" enctype="multipart/form-data" class="form-control">
                 {% csrf_token %}
                 {{u_form|crispy}}
                 {{p_form|crispy}}
                 <button type="submit" class="btn btn-sm btn-info">Update</button>
             </form>
-        </div>
-    </div>
-</div>
-{% endblock %}
-            <p>Posted pics:{{user_images|length}}   Followers:   Following:   </p>
-                <div class="col-md-2">
-                  <h5 class="mt-4">@{{user.username}}</h5>
-                </div>
-                <div class="col-md-2">
-                   <form action="" enctype="multipart/form-data">
-                       {% csrf_token %}
-                       {{u_form|crispy}}
-                       {{p_form|crispy}}
-                   </form>
-                </div>
-                <div class="col-md-2"></div>
             </div>
-            <h6 class="mt-3">Bio:</h6>
-            <p>{{user.profile.bio}}</p>
         </div>
+        <div class="col-md-4">
+            <img src="{{ user.profile.prof_image.url}}" height="200px" width="200px" class="rounded-circle" alt="profile photo">
+        </div>
+        <div class="col-md-4"></div>
     </div>
     <hr>
-    <div class="row">
-        <h1>Images posted on my time line are here</h1>
-    </div>
 </div>
+{% endblock %}

@@ -1,6 +1,10 @@
 h1{
     color: pink;
 }
+
+#update{
+    display: none;
+}
 img#profile{
     border-radius: 50%;
 }#myImg {

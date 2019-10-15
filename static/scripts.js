@@ -18,3 +18,10 @@ var span = document.getElementsByClassName("close")[0];
 span.onclick = function() {
   modal.style.display = "none";
 }
+
+$(document).ready(function(){
+    $(button#edit).click(function(){
+        $(#update).show();
+        $(button#edit).hide();
+    })
+})

@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-6">
         {% for image in posts %}
-        <img src="{{image.image.url}}" id="myImg" class="mt-4" width="100%" alt="{{image.img_name}}">
+        <img src="{{image.image.url}}" data-toggle="modal" data-target="#im{{image.id}}" id="myImg" class="mt-4" width="100%" alt="{{image.img_name}}">
                 <!-- The Modal -->
         <div id="myModal" class="modal">
           <span class="close">&times;</span>
