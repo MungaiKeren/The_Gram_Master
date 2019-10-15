@@ -80,7 +80,7 @@ def profile(request):
         p_form = ProfileUpdateForm(request.POST,
                                    request.FILES,
                                    instance=request.user.profile)
-    return render(request, 'profile.html', {"u_form": u_form, "p_form": p_form, "pics":pics})
+    return render(request, 'profile.html', {"u_form": u_form, "p_form": p_form, "pics": pics})
 
 
 def search_by_username(request):

@@ -3,16 +3,11 @@
 {% block content %}
 {{ block.super }}
 <div class="container">
+    <h1></h1>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 card">
         {% for image in posts %}
         <img src="{{image.image.url}}" data-toggle="modal" data-target="#im{{image.id}}" id="myImg" class="mt-4" width="100%" alt="{{image.img_name}}">
-                <!-- The Modal -->
-        <div id="myModal" class="modal">
-          <span class="close">&times;</span>
-          <img class="modal-content" id="img01">
-          <div id="caption"></div>
-        </div>
         <form action="{%url 'index' %}" class="form-group" method="post" class="mt-2 ">
             {% csrf_token %}
             {{ form|crispy }}
@@ -26,16 +21,16 @@
             <p>{{comment.comment}}</p>
             {% endif %}
             {% endfor %}
-        {% empty %}
-        <p>No images have been posted yet</p>
-        {% endfor %}
+            {% empty %}
+            <p>No images have been posted yet</p>
+            {% endfor %}
         </div>
-        <div class="col-md-"></div>
+        <div class="col-md-2"></div>
         <div class="col-md-4 d-inline-block">
             <a href="{% url 'profile'%}">
                 <p class="mt-5">@{{user.username}}</p>
+                <img  src="{{ user.profile.prof_image.url}}" height="100px" width="100px" class="rounded-circle" alt="profile photo">
             </a>
-              <img  src="{{ user.profile.prof_image.url}}" height="100px" width="100px" class="rounded-circle" alt="profile photo">
         </div>
     </div>
 </div>

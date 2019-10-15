@@ -42,4 +42,4 @@ class CommentForm(forms.ModelForm):
 class PostPicForm(forms.ModelForm):
     class Meta:
         model = Image
-        fields = ['image']
+        fields = ['image', 'img_caption']
