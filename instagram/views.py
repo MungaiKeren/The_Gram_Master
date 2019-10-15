@@ -24,6 +24,7 @@ def index(request):
     title = 'instagram-clone'
     posts = Image.get_images()
     comments = Comment.get_all_comments()
+    users = User.objects.all()
     current_user = request.user
     if request.method == 'POST':
         form = CommentForm(request.POST)
@@ -43,6 +44,7 @@ def index(request):
         "posts": posts,
         "form": form,
         "comments": comments,
+        "users": users
     }
     return render(request, 'index.html', param)
 
