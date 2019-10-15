@@ -27,14 +27,14 @@
         <div class="col-md-4"></div>
     </div>
     <hr>
-    <div class="card-columns">
+</div>
+    <div class="card-columns container-fluid">
         {% for pic in pics %}
         <div class="card">
-            <img src="{{pic.image.url}}" alt="my images">
+            <img src="{{pic.image.url}}" height="300vh" alt="my images">
         </div>
         {% empty %}
         <p>No pics</p>
         {% endfor %}
     </div>
-</div>
 {% endblock %}
