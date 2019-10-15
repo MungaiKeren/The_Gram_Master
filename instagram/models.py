@@ -1,6 +1,8 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
+from django.http import Http404
 
 
 class Profile(models.Model):
@@ -19,6 +21,11 @@ class Profile(models.Model):
 
     def update_profile(self):
         self.update_profile()
+
+    @classmethod
+    def get_by_id(cls, id):
+        user_images = Profile.objects.filter(user=id).first()
+        return user_images
 
 
 class Image(models.Model):
@@ -44,6 +51,11 @@ class Image(models.Model):
             raise Http404()
         return image
 
+    @classmethod
+    def get_author(cls, search_term):
+        image = cls.objects.filter(author__username__icontains=search_term)
+        return image
+
     class Meta:
         ordering = ['-post_date']
 
@@ -61,6 +73,11 @@ class Image(models.Model):
     def get_images(cls):
         images = cls.objects.all()
         return images
+
+    @classmethod
+    def get_profile_images(cls, profile):
+        user_images = Image.objects.filter(profile__id=profile)
+        return user_images
 
 
 class Comment(models.Model):

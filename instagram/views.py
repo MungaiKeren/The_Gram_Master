@@ -64,6 +64,7 @@ def post_pic(request):
 
 @login_required(login_url='/login')
 def profile(request):
+    pics = Image.get_images()
     if request.method == 'POST':
         u_form = EditProfileForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST,
@@ -79,4 +80,24 @@ def profile(request):
         p_form = ProfileUpdateForm(request.POST,
                                    request.FILES,
                                    instance=request.user.profile)
-    return render(request, 'profile.html', {"u_form": u_form, "p_form": p_form})
+    return render(request, 'profile.html', {"u_form": u_form, "p_form": p_form, "pics":pics})
+
+
+def search_by_username(request):
+    if 'author' in request.GET and request.GET['author']:
+        search_term = request.GET['author']
+        searched_images = Image.get_author(search_term)
+        message = f'{search_term}'
+        user = User.objects.all()
+        param = {
+            "user": user,
+            "images": searched_images,
+            "message": message
+        }
+        return render(request, 'search.html', param)
+    else:
+        message = "search for a user"
+        param = {
+            "message": message
+        }
+        return render(request, 'search.html', param)

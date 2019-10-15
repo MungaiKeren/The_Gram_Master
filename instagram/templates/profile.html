@@ -27,5 +27,14 @@
         <div class="col-md-4"></div>
     </div>
     <hr>
+    <div class="card-columns">
+        {% for pic in pics %}
+        <div class="card">
+            <img src="" alt="my images">
+        </div>
+        {% empty %}
+        <p>No pics</p>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
