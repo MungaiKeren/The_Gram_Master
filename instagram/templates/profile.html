@@ -30,7 +30,7 @@
     <div class="card-columns">
         {% for pic in pics %}
         <div class="card">
-            <img src="" alt="my images">
+            <img src="{{pic.image.url}}" alt="my images">
         </div>
         {% empty %}
         <p>No pics</p>
