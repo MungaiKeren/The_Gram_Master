@@ -9,8 +9,7 @@
             <div class="card mb-5">
         {% for image in posts %}
                 <div class="card-header">
-                    <img src="{{ user.profile.prof_image.url}}" height="50px" width="50px" class="rounded-circle" alt="">
-                    {{image.author}}
+                    By: {{image.author}}
                 </div>
                 <!-- Image trigger modal -->
                 <img src="{{image.image.url}}" class="mt-0" data-toggle="modal" data-target="#im{{image.id}}" id="myImg" class="mt-4" width="100%" alt="{{image.img_name}}">
@@ -63,6 +62,20 @@
                 <p class="mt-5">@{{user.username}}</p>
                 <img  src="{{ user.profile.prof_image.url}}" height="100px" width="100px" class="rounded-circle" alt="profile photo">
             </a>
+            <h5>Suggestions to follow</h5>
+           {% for user in users%}
+           {% if current_user.username == user.username %}
+           <p style="display:none;">{{user.username}}</p>
+           {% else %}
+           <div class="form-inline">
+           <h6>{{user.username}}</h6>
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<img src="{{ user.profile.prof_image.url}}" height="100px" width="100px" class="mt-5 rounded-circle" alt="">
+           &nbsp;&nbsp;&nbsp;
+               <button class="btn btn-sm">Follow</button>
+           {% endif %}
+           {% endfor %}
         </div>
     </div>
 </div>
