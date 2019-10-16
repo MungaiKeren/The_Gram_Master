@@ -31,7 +31,7 @@ class Profile(models.Model):
 class Image(models.Model):
     image = models.ImageField(upload_to='pic_folder/')
     img_name = models.CharField(max_length=30)
-    img_caption = models.CharField(max_length=40, blank=True)
+    img_caption = models.CharField(max_length=200, blank=True)
     img_likes = models.IntegerField(default=0)
     post_date = models.DateTimeField(auto_now_add=True)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, default='1')

@@ -5,3 +5,16 @@ h1{
 #update{
     display: none;
 }
+nav {
+    height:10vh;
+}
+.card-header{
+    height:10vh;
+}
+.modal-body{
+    background-color: transparent;
+}
+strong{
+    text-decoration: underline;
+    margin-left:5%;
+}
