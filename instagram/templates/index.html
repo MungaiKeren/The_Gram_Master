@@ -10,6 +10,7 @@
         {% for image in posts %}
                 <div class="card-header">
                     By: {{image.author}}
+                    <img src="{{image.author.profile.image.url}}" alt="">
                 </div>
                 <!-- Image trigger modal -->
                 <img src="{{image.image.url}}" class="mt-0" data-toggle="modal" data-target="#im{{image.id}}" id="myImg" class="mt-4" width="100%" alt="{{image.img_name}}">
