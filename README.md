@@ -63,7 +63,7 @@ One can view all images for all users in the app
 
 
 ## Visual Representation
-<img src="https://github.com/MungaiKeren/My-Shoe-images/blob/master/me%20gallery.png?raw=true" height = "400px">
+<img src="https://github.com/MungaiKeren/My-Shoe-images/blob/master/Screenshot%20from%202019-10-16%2011-38-18.png?raw=true" height = "400px">
 
 ### LICENSE
 [MIT](https://github.com/MungaiKeren/The_Gram_Master/blob/master/LICENSE)
